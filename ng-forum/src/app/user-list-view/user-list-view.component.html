@@ -1,0 +1,84 @@
+Please choose a user
+
+<div>
+  <ul>
+    <li *ngFor="let user of users">
+      <a href="#{{user.id}}" (click)="detailsUser(user)">
+        {{user.name}}</a>
+    </li>
+  </ul>
+</div>
+
+
+<div>
+  <h3>Create new User</h3>
+
+  <form>
+    <input type="text" name="userName"
+           [(ngModel)]="createdUser.name" (click)="createdUser.name = '' ">
+    <button (click)="createUser()" [disabled]="createdUser.name?.length<2">Create new User</button>
+  </form>
+</div>
+
+<div *ngIf="selectedUser">
+  <h3> User details : {{selectedUser.name}}</h3>
+  <ul>
+    <li *ngFor="let topic of selectedUser?.topics">
+      {{topic.name}}
+    </li>
+  </ul>
+
+  <h3>Create new Topic</h3>
+  <form>
+    <input type="text" name="topicName"
+           [(ngModel)]="createdTopic.name" (click)="createdTopic.name='' ">
+    <button (click)="createTopic()" [disabled]="createdTopic.name?.length<2">Create new topic</button>
+
+  </form>
+
+</div>
+
+<br> <br>
+
+
+Please choose a topic
+
+<div>
+  <ul>
+    <li *ngFor="let topic of topics">
+      <a href="#{{topic.id}}" (click)="detailsTopic(topic)">
+        {{topic.name}}
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+<form>
+
+  <div *ngIf="selectedTopic">
+    <h3> Topic details : {{selectedTopic.name}}</h3>
+
+    <form>
+      <p>
+        <label for="name">Nom :</label>
+        <select name="users" id="name" [(ngModel)]="commentUser">
+          <option *ngFor="let user of users" value="{{ user.id }}">
+            {{user.name}}
+          </option>
+        </select>
+        <span>Utilisateur sélectionné : {{ commentUser }}</span>
+      </p>
+
+      <input type="text" name="commentContent"
+             [(ngModel)]="createdComment.content" (click)="createdComment.content='' ">
+      <button (click)="createComment()" [disabled]="createdComment.content?.length<5">Create new comment</button>
+    </form>
+
+  </div>
+
+</form>
+
+
+
+
