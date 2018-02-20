@@ -25,6 +25,13 @@ export class DataService {
       .then(data => data as Topic[])
   }
 
+  fetchComments(): Promise<Comment[]> {
+    return this.http
+      .get('http://localhost:8080/forum/api/comments')
+      .toPromise()
+      .then(data => data as Comment[])
+  }
+
   createUser(user: User) {
     let url = 'http://localhost:8080/forum/api/users/';
 
@@ -44,37 +51,29 @@ export class DataService {
   }
 
   createTopic(topic: Topic)
-{
-  let url = 'http://localhost:8080/forum/api/topics/';
+  {
+    let url = 'http://localhost:8080/forum/api/topics/';
 
-  let dto = { //Data Transfer Object. Pour Jax-B
-  name: topic.name,
-  user: topic.user
-};
-  console.log('Sending topic:; topic');
-  return this.http
-.post(url, dto)
-.toPromise()
-.then(data => console.log('Success :)', data))
-  //.catch(e => console.error('Fail :(', e))
-}
+    let dto = { //Data Transfer Object. Pour Jax-B
+      name: topic.name,
+      user: topic.user
+    };
+
+    console.log('Sending topic:; topic');
+    return this.http
+      .post(url, dto)
+      .toPromise()
+      .then(data => console.log('Success :)', data))
+    //.catch(e => console.error('Fail :(', e))
+  }
 
   createComment(comment: Comment)
   {
     let url = 'http://localhost:8080/forum/api/comments/';
 
-    let dto = { //Data Transfer Object. Pour Jax-B
-      content: comment.content,
-      user: comment.user,
-      topic: comment.topic
-    };
-
-    console.log(dto);
-    return ;
-
-    console.log('Sending comment:; comment');
+    console.log('Sending comment: ');
     return this.http
-      .post(url, dto)
+      .post(url, comment)//voir comment ds user-list
       .toPromise()
       .then(data => console.log('Success :)', data))
     //.catch(e => console.error('Fail :(', e))

@@ -55,15 +55,14 @@ Please choose a topic
 
 
 <form>
-
   <div *ngIf="selectedTopic">
-    <h3> Topic details : {{selectedTopic.name}}</h3>
+    <h3> Create a new comment for {{selectedTopic.name}}:</h3>
 
     <form>
       <p>
         <label for="name">Nom :</label>
         <select name="users" id="name" [(ngModel)]="commentUser">
-          <option *ngFor="let user of users" value="{{ user.id }}">
+          <option *ngFor="let user of users; let i = index" value="{{ i }}">
             {{user.name}}
           </option>
         </select>
@@ -79,6 +78,15 @@ Please choose a topic
 
 </form>
 
+<div *ngIf="selectedTopic">
+  <h3>Comments of {{selectedTopic.name}}:</h3>
+  <ul>
+    <li *ngFor="let comment of comments">
+      {{comment.content}}
+    </li>
+  </ul>
 
 
+
+</div>
 

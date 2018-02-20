@@ -23,7 +23,7 @@ public class JdbcConnector {
 
         try {
             Context context = new InitialContext();
-            dataSource = (DataSource) context.lookup("java:/forum2");
+            dataSource = (DataSource) context.lookup("java:/forum");
 
         } catch (NamingException e) {
 
@@ -44,3 +44,4 @@ public class JdbcConnector {
 
     }
 }
+
