@@ -93,11 +93,11 @@ export class UserListViewComponent implements OnInit {
         Object.assign({}, this.createdComment)
       ))
 
-    /*this.dataService.createComment(this.createdComment).then(() =>
+    this.dataService.createComment(this.createdComment).then(() =>
         this.commentUser.comments.push(
         (Object.assign({}, this.createdComment))
       ))
-*/
+
       .catch(e => alert(e));
   }
 
